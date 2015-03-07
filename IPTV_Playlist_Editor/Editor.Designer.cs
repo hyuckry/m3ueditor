@@ -66,6 +66,8 @@
             this.openFile = new System.Windows.Forms.OpenFileDialog();
             this.saveFile = new System.Windows.Forms.SaveFileDialog();
             this.directoryEntry1 = new System.DirectoryServices.DirectoryEntry();
+            this.axVLCPlugin21 = new AxAXVLC.AxVLCPlugin2();
+            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -74,6 +76,7 @@
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.channelsGrid)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin21)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -325,6 +328,8 @@
             this.panel1.AutoSize = true;
             this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.axVLCPlugin21);
             this.panel1.Controls.Add(this.buttonSubmit);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.stream);
@@ -343,7 +348,7 @@
             // 
             this.buttonSubmit.Location = new System.Drawing.Point(15, 369);
             this.buttonSubmit.Name = "buttonSubmit";
-            this.buttonSubmit.Size = new System.Drawing.Size(254, 23);
+            this.buttonSubmit.Size = new System.Drawing.Size(97, 23);
             this.buttonSubmit.TabIndex = 16;
             this.buttonSubmit.Text = "Update channel";
             this.buttonSubmit.UseVisualStyleBackColor = true;
@@ -409,6 +414,26 @@
             this.saveFile.Title = "Save Playlist";
             this.saveFile.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFile_FileOk);
             // 
+            // axVLCPlugin21
+            // 
+            this.axVLCPlugin21.Enabled = true;
+            this.axVLCPlugin21.Location = new System.Drawing.Point(8, 169);
+            this.axVLCPlugin21.Name = "axVLCPlugin21";
+            this.axVLCPlugin21.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin21.OcxState")));
+            this.axVLCPlugin21.Size = new System.Drawing.Size(261, 194);
+            this.axVLCPlugin21.TabIndex = 17;
+            this.axVLCPlugin21.Enter += new System.EventHandler(this.axVLCPlugin21_Enter);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(188, 369);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 18;
+            this.button1.Text = "Test";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Editor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -437,6 +462,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.channelsGrid)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            //((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin21)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -478,6 +504,8 @@
         private System.DirectoryServices.DirectoryEntry directoryEntry1;
         public System.Windows.Forms.TextBox stream;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private AxAXVLC.AxVLCPlugin2 axVLCPlugin21;
+        private System.Windows.Forms.Button button1;
     }
 }
 

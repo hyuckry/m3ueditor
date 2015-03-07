@@ -67,10 +67,16 @@ namespace Kodi_M3U_IPTV_Editor
                    data.Add(line);
                    
                 }
-            
-              
 
-            if (data.Count == 3)
+                if (data.Count == 3)
+                {
+
+
+                    channels.Add(new Channel(channelNum,"Not Available", data[2].Trim(), data[3].Trim()));//, data[4].Trim(),data[6].Trim(), data[5].Trim()* 
+
+                } 
+
+            if (data.Count == 4)
                 {
 
 
@@ -414,6 +420,19 @@ namespace Kodi_M3U_IPTV_Editor
             channels.Add(new Channel(channelNum, data[0].Trim(), data[2].Trim(), data[3].Trim()));//, data[4].Trim(),data[6].Trim(), data[5].Trim()* 
  
             
+        }
+
+        private void axVLCPlugin21_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+           
+            axVLCPlugin21.playlist.items.clear();
+            axVLCPlugin21.playlist.add(stream.Text, channelName.Text, "--brightness=2");
+            axVLCPlugin21.playlist.play();
         }
 
        /* private void button1_Click(object sender, EventArgs e)

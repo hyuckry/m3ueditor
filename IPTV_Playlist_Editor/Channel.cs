@@ -11,6 +11,13 @@ namespace Kodi_M3U_IPTV_Editor
         private string _Name, _Group, _ip; //_epg, _image
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public Channel(int id, string Name, string ip)
+        {
+            _Name = Name;
+            _ip = ip;
+
+            //  _epg = epg;
+        }
         public Channel(int id , string Group,string Name,  string ip)
         {
             _Name = Name;
