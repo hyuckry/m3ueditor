@@ -73,6 +73,16 @@ namespace Kodi_M3U_IPTV_Editor.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap dialog_information {
+            get {
+                object obj = ResourceManager.GetObject("dialog_information", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap document_new {
             get {
                 object obj = ResourceManager.GetObject("document_new", resourceCulture);
@@ -127,6 +137,16 @@ namespace Kodi_M3U_IPTV_Editor.Properties {
             get {
                 object obj = ResourceManager.GetObject("favicon__3_", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap format_justify_center {
+            get {
+                object obj = ResourceManager.GetObject("format_justify_center", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

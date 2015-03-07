@@ -70,11 +70,18 @@ namespace Kodi_M3U_IPTV_Editor
 
                 if (data.Count == 3)
                 {
+                    try
+                    {
+                        channels.Add(new Channel(channelNum, "Not Available", data[2].Trim(), data[3].Trim()));//, data[4].Trim(),data[6].Trim(), data[5].Trim()* 
 
-
-                    channels.Add(new Channel(channelNum,"Not Available", data[2].Trim(), data[3].Trim()));//, data[4].Trim(),data[6].Trim(), data[5].Trim()* 
-
-                } 
+                    }
+                    catch (System.ArgumentOutOfRangeException)
+                        {
+                            MessageBox.Show("A channel has been omitted due to its lack of url or its incorrect format");
+                            continue;
+                        }
+                }
+               
 
             if (data.Count == 4)
                 {
@@ -102,14 +109,7 @@ namespace Kodi_M3U_IPTV_Editor
             else
             {
                 splitContainer1.Panel2Collapsed = false; enableEditing();
-               // if (image)
-             //   {
-                  //  channelsGrid.Columns[6].Visible = true; channelImage.Enabled = true;
-             //   }
-              //  else
-              //  {
-                  // channelsGrid.Columns[6].Visible = false; channelImage.Enabled = false;
-           //     }
+             
             }
         }
 
@@ -435,10 +435,26 @@ namespace Kodi_M3U_IPTV_Editor
             axVLCPlugin21.playlist.play();
         }
 
-       /* private void button1_Click(object sender, EventArgs e)
+        private void addAListToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            tester form = new tester();
-            form.ShowDialog();
-        }*/
+            alertSave();
+            openFileDialog1.ShowDialog();
+        }
+
+        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+            fileName = Path.GetFileNameWithoutExtension(openFile.FileName);
+            playlistFile = new StreamReader(openFile.FileName);
+            channelsGrid.DataSource = channels;
+            switch (Path.GetExtension(openFile.FileName))
+            {
+                case ".m3u":
+                    importM3U();
+                    break;
+
+            }
+        }
+
+       
     }
 }

@@ -37,6 +37,7 @@
             this.newListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openURLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addAListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -56,6 +57,8 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.channelsGrid = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.axVLCPlugin21 = new AxAXVLC.AxVLCPlugin2();
             this.buttonSubmit = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.stream = new System.Windows.Forms.TextBox();
@@ -66,8 +69,7 @@
             this.openFile = new System.Windows.Forms.OpenFileDialog();
             this.saveFile = new System.Windows.Forms.SaveFileDialog();
             this.directoryEntry1 = new System.DirectoryServices.DirectoryEntry();
-            this.axVLCPlugin21 = new AxAXVLC.AxVLCPlugin2();
-            this.button1 = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -98,6 +100,7 @@
             this.newListToolStripMenuItem,
             this.openFileToolStripMenuItem,
             this.openURLToolStripMenuItem,
+            this.addAListToolStripMenuItem,
             this.toolStripSeparator1,
             this.saveToolStripMenuItem,
             this.toolStripSeparator2,
@@ -111,7 +114,7 @@
             // 
             this.newListToolStripMenuItem.Image = global::Kodi_M3U_IPTV_Editor.Properties.Resources.document_new;
             this.newListToolStripMenuItem.Name = "newListToolStripMenuItem";
-            this.newListToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.newListToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.newListToolStripMenuItem.Text = "New List";
             this.newListToolStripMenuItem.Click += new System.EventHandler(this.newListToolStripMenuItem_Click);
             // 
@@ -119,7 +122,7 @@
             // 
             this.openFileToolStripMenuItem.Image = global::Kodi_M3U_IPTV_Editor.Properties.Resources.document_open;
             this.openFileToolStripMenuItem.Name = "openFileToolStripMenuItem";
-            this.openFileToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.openFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.openFileToolStripMenuItem.Text = "&Open List...";
             this.openFileToolStripMenuItem.Click += new System.EventHandler(this.openPlaylist);
             // 
@@ -127,33 +130,42 @@
             // 
             this.openURLToolStripMenuItem.Image = global::Kodi_M3U_IPTV_Editor.Properties.Resources.applications_internet;
             this.openURLToolStripMenuItem.Name = "openURLToolStripMenuItem";
-            this.openURLToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.openURLToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.openURLToolStripMenuItem.Text = "Open &URL...";
             this.openURLToolStripMenuItem.Click += new System.EventHandler(this.openURL);
+            // 
+            // addAListToolStripMenuItem
+            // 
+            this.addAListToolStripMenuItem.Image = global::Kodi_M3U_IPTV_Editor.Properties.Resources.format_justify_center;
+            this.addAListToolStripMenuItem.Name = "addAListToolStripMenuItem";
+            this.addAListToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.addAListToolStripMenuItem.Text = "Add a list...";
+            this.addAListToolStripMenuItem.Click += new System.EventHandler(this.addAListToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(133, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Enabled = false;
             this.saveToolStripMenuItem.Image = global::Kodi_M3U_IPTV_Editor.Properties.Resources.document_save_as;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
-            this.saveToolStripMenuItem.Text = "&Save";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Text = "&Save as...";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.savePlaylist);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(133, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
             // 
             // exitToolStripMenuItem
             // 
+            this.exitToolStripMenuItem.Image = global::Kodi_M3U_IPTV_Editor.Properties.Resources.emblem_unreadable;
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "&Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -167,6 +179,7 @@
             // 
             // aboutToolStripMenuItem
             // 
+            this.aboutToolStripMenuItem.Image = global::Kodi_M3U_IPTV_Editor.Properties.Resources.dialog_information;
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem.Text = "&About";
@@ -326,7 +339,6 @@
             // panel1
             // 
             this.panel1.AutoSize = true;
-            this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.axVLCPlugin21);
@@ -343,6 +355,26 @@
             this.panel1.Size = new System.Drawing.Size(281, 434);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(188, 369);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 18;
+            this.button1.Text = "Test";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // axVLCPlugin21
+            // 
+            this.axVLCPlugin21.Enabled = true;
+            this.axVLCPlugin21.Location = new System.Drawing.Point(8, 169);
+            this.axVLCPlugin21.Name = "axVLCPlugin21";
+            this.axVLCPlugin21.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin21.OcxState")));
+            this.axVLCPlugin21.Size = new System.Drawing.Size(261, 194);
+            this.axVLCPlugin21.TabIndex = 17;
+            this.axVLCPlugin21.Enter += new System.EventHandler(this.axVLCPlugin21_Enter);
             // 
             // buttonSubmit
             // 
@@ -414,25 +446,11 @@
             this.saveFile.Title = "Save Playlist";
             this.saveFile.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFile_FileOk);
             // 
-            // axVLCPlugin21
+            // openFileDialog1
             // 
-            this.axVLCPlugin21.Enabled = true;
-            this.axVLCPlugin21.Location = new System.Drawing.Point(8, 169);
-            this.axVLCPlugin21.Name = "axVLCPlugin21";
-            this.axVLCPlugin21.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin21.OcxState")));
-            this.axVLCPlugin21.Size = new System.Drawing.Size(261, 194);
-            this.axVLCPlugin21.TabIndex = 17;
-            this.axVLCPlugin21.Enter += new System.EventHandler(this.axVLCPlugin21_Enter);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(188, 369);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 18;
-            this.button1.Text = "Test";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.openFileDialog1.Filter = "Playlist Files (*.m3u)|*.m3u";
+            this.openFileDialog1.Title = "Open Playlist";
+            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
             // Editor
             // 
@@ -462,7 +480,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.channelsGrid)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            //((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin21)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin21)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -506,6 +524,8 @@
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private AxAXVLC.AxVLCPlugin2 axVLCPlugin21;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ToolStripMenuItem addAListToolStripMenuItem;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 

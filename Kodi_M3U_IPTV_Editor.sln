@@ -21,6 +21,7 @@ Global
 		{8963C69B-CE14-46DF-87DB-00513586F128}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8963C69B-CE14-46DF-87DB-00513586F128}.Release|x86.ActiveCfg = Release|x86
 		{8963C69B-CE14-46DF-87DB-00513586F128}.Release|x86.Build.0 = Release|x86
+		{8963C69B-CE14-46DF-87DB-00513586F128}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
