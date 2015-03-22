@@ -7,7 +7,7 @@ namespace Kodi_M3U_IPTV_Editor
 {
     class textoperations
     {
-        public static string getBetween(string strSource, string strStart, string strEnd)
+        public static string Between(string strSource, string strStart, string strEnd)
         {
             int Start, End;
             if (strSource.Contains(strStart) && strSource.Contains(strEnd))

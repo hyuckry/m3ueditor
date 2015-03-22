@@ -8,25 +8,36 @@ namespace Kodi_M3U_IPTV_Editor
     public class Channel : INotifyPropertyChanged
     {
 
-        private string _Name, _Group, _ip; //_epg, _image
+        private string _Name, _Group, _ip, _tvid, _logo; //_epg, _image
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public Channel(int id, string Name, string ip)
+
+        /*public Channel(int id, string Name, string ip, string tvid)
+        {
+            _Name = Name;
+            _ip = ip;
+            _tvid = tvid;
+            //  _epg = epg;
+        }*/
+        public Channel(int id, string Name, string ip, string Group = "",string logo = "", string tvid =  "", string lol = "")
+        {
+            _Name = Name;
+            _Group = Group;
+            _ip = ip;
+            _tvid = tvid;
+            _logo = logo;
+
+            //  _epg = epg;
+        }
+
+     /*   public Channel(int id, string Name, string ip)
         {
             _Name = Name;
             _ip = ip;
 
             //  _epg = epg;
-        }
-        public Channel(int id , string Group,string Name,  string ip)
-        {
-            _Name = Name;
-            _Group = Group;
-            _ip = ip;
-
-          //  _epg = epg;
-        }
-
+        }*/
+       
       /*  public Channel(int id , string Group,string Name, string ip, string image)
         {
 
@@ -73,26 +84,26 @@ namespace Kodi_M3U_IPTV_Editor
         }
 
     
-      //  public string EPG
-     //   {
-    //        get { return _epg; }
-      //      set
-          //  {
-           //     _epg = value;
-         //       this.NotifyPropertyChanged("EPG");
-         //   }
-        //}
-
-      /*  public string Image
+       public string EPG
+       {
+           get { return _tvid; }
+           set
         {
-            get { return _image; }
+             _tvid = value;
+              this.NotifyPropertyChanged("EPG");
+          }
+     }
+
+        public string Image
+        {
+            get { return _logo; }
             set
             {
-                _image = value;
-                this.NotifyPropertyChanged("Image");
+                _logo = value;
+                this.NotifyPropertyChanged("Logo");
             }
         }
-        */
+      
         private void NotifyPropertyChanged(string value)
         {
             if (PropertyChanged != null)

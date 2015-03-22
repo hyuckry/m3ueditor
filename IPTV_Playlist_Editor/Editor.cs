@@ -36,54 +36,121 @@ namespace Kodi_M3U_IPTV_Editor
             alertSave();
             openFile.ShowDialog();
         }
-
+        public void updatechannels()
+        {
+            
+            if (channelsGrid.SelectedRows.Count == 0)
         
+                return;
+        
+            //int id;
+            if (/*channelID.Text.Trim().Length > 0 && int.TryParse(channelID.Text.Trim(), out id) && */ channelName.Text.Trim().Length > 0 && stream.Text.Trim().Length > 0)
+            {
+                int selectedRow = channelsGrid.SelectedRows[0].Index;
+
+                channels[selectedRow].Name = channelName.Text;
+                channels[selectedRow].Group = channelTags.Text;
+                textBox1.Text = channels[selectedRow].Image;
+                textBox2.Text = channels[selectedRow].EPG;
+                channels[selectedRow].IP = stream.Text;
+                string uri = stream.Text;
+                //  channels[selectedRow].EPG = channelEPG.Text;
+                //channels[selectedRow].Image = channelImage.Text;
+            }
+           /* else
+            {
+                MessageBox.Show("A name and stream URL is required", "Update error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            } */
+        } 
+   
         public void importM3U()
         {
            
          //  bool image = false;
 
-          
-
+            
+            
 
             while ((line = playlistFile.ReadLine()) != null)
             {
                 
                 if (line.StartsWith("#EXTINF"))
                 {
+
+                    data.Add("EPG N/A");
+                    data.Add("Logo N/A");
+                    data.Add("Group N/A");
+                    data.Add("EPG N/A");
+                    data.Add("Logo N/A");
+                    data.Add("Group N/A");
+                    data.Add("Title N/A");
+                  
+                  
+                    //tvg-id used for epg data[0]
                     
-                    //this one is for getting group-title data[0]
-                    string between = textoperations.getBetween(line, "group-title=\"", "\"");
-                    data.Add(between);
-                     //this is the name of the channel... data[1]= rubbish data[2]=channel name 
-                    data.AddRange(line.Substring(8).Split(','));
+                    string between2 = textoperations.Between(line, "tvg-id=\"", "\"");
+                    data[0] = between2;
+                    if (data[0] == "")
+                    {
+                        data[0] = "EPG N/A";
+                    }
+                 
+                    //tvg-logo used for logo data[1]
+                    
+                    string between3 = textoperations.Between(line, "tvg-logo=\"", "\"");
+                    data[1] = between3;
+                    if (data[1] == "")
+                    {
+                        data[1] = "Logo N/A";
+                    }
+                    //this one is for getting group-title data[2]
+                    
+                    string between = textoperations.Between(line, "group-title=\"", "\"");
+                    data[2] = between;
+                    if (data[2] == "")
+                    {
+                        data[2] = "Group N/A";
+                    }
+                     //this is the name of the channel... data[3 && 4]= rubbish data[5]=channel name 
+                    string lastPart = line.Split(',').Last();
+                    data[6] = lastPart;
+                    if (data[6] == "")
+                    {
+                        data[6] = "Title N/A";
+                    }
                     continue;
+                    
                 }
                 
                     
                 else if (line.Contains("//"))
                 {
-                  //this is the url ...data[3]
-                   data.Add(line);
+                  //this is the url ...data[6]
+                    data[5] = line;
                    
                 }
+                // here comes the bit that adds the channels, and defines what goes where
 
-                if (data.Count == 3)
+
+
+                if (data.Count > 0)
                 {
+                   
                     try
                     {
-                        channels.Add(new Channel(channelNum, "Not Available", data[2].Trim(), data[3].Trim()));//, data[4].Trim(),data[6].Trim(), data[5].Trim()* 
+                        //data count should be 7
+                        channels.Add(new Channel(id:channelNum, Name:data[6].Trim(),ip:data[5].Trim(), Group:data[2].Trim(),logo:data[1].Trim(),tvid:data[0].Trim() ));//, data[4].Trim(),data[6].Trim(), data[5].Trim()* 
 
                     }
-                    catch (System.ArgumentOutOfRangeException)
+                   catch (System.ArgumentOutOfRangeException)
                         {
-                            MessageBox.Show("A channel has been omitted due to its lack of url or its incorrect format");
+                            MessageBox.Show("A channel has been omitted due to its incorrect format");
                             continue;
-                        }
+                      }
                 }
                
 
-            if (data.Count == 4)
+          /*  if (data.Count == 4)
                 {
 
 
@@ -97,7 +164,7 @@ namespace Kodi_M3U_IPTV_Editor
                     channels.Add(new Channel(channelNum, data[0].Trim(), data[2].Trim(), data[3].Trim()));//, data[4].Trim(),data[6].Trim(), data[5].Trim()));
                   //  image = true;
                 }
-                
+                */
                 data.Clear();
             }
             playlistFile.Close();
@@ -138,7 +205,7 @@ namespace Kodi_M3U_IPTV_Editor
 
         private void toolStripNew_Click(object sender, EventArgs e)
         {
-            channels.Add(new Channel(channelNum, "","New Channel", "" ));
+            channels.Add(new Channel(id:channelNum, Name:"New Channel",ip:"http://123.456.789", Group:"New Group",logo:"New Logo",tvid:"New EPG"));
             channelsGrid.Rows[channels.Count - 1].Selected = true;
             channelsGrid.FirstDisplayedScrollingRowIndex = channels.Count - 1;
         }
@@ -164,10 +231,10 @@ namespace Kodi_M3U_IPTV_Editor
             channelTags.Text = channels[selectedRow].Group;
         
             stream.Text = channels[selectedRow].IP;
-            
-           // channelEPG.Text = channels[selectedRow].EPG;
-            //channelImage.Text = channels[selectedRow].Image;
-            buttonSubmit.Enabled = true;
+            textBox1.Text = channels[selectedRow].Image;
+            textBox2.Text = channels[selectedRow].EPG;
+          
+       
             string uri = stream.Text;
         }
 
@@ -224,8 +291,7 @@ namespace Kodi_M3U_IPTV_Editor
 
             channels.RemoveAt(selectedRow);
 
-            if (channels.Count == 0)
-                buttonSubmit.Enabled = false;
+           
         }
 
 
@@ -241,16 +307,17 @@ namespace Kodi_M3U_IPTV_Editor
      
                 channels[selectedRow].Name = channelName.Text;
                 channels[selectedRow].Group = channelTags.Text;
-
+                textBox1.Text = channels[selectedRow].Image;
+                textBox2.Text = channels[selectedRow].EPG;
                 channels[selectedRow].IP = stream.Text;
                 string uri = stream.Text;
               //  channels[selectedRow].EPG = channelEPG.Text;
                 //channels[selectedRow].Image = channelImage.Text;
             }
-            else
+         /*   else
             {
                 MessageBox.Show("A name and stream URL is required", "Update error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            } */
         }
 
         private void savePlaylist(object sender, EventArgs e)
@@ -266,7 +333,7 @@ namespace Kodi_M3U_IPTV_Editor
             file.WriteLine();
             for (int i = 0; i < channels.Count; i++)
             {
-                file.WriteLine("#EXTINF:" + "0" + " group-title=\"" + channels[i].Group + "\"" + "," + channels[i].Name);
+                file.WriteLine("#EXTINF:" + "0" + ", tvg-id=\"" + channels[i].EPG + "\" " + "tvg-logo=\"" + channels[i].Image + "\" " + "tvg-name=\"" + channels[i].Name  + "\" " + " group-title=\"" + channels[i].Group + "\"" + "," + channels[i].Name);
                 //file.WriteLine("#EXTTV:" + channels[i].Tag.Replace(",", "-") + ";" + channels[i].Language + ";" + channels[i].EPG + ((channels[i].Image.Trim().Length>0) ? ";"+channels[i].Image : ""));
                 file.WriteLine(channels[i].IP );
                 file.WriteLine();
@@ -385,11 +452,7 @@ namespace Kodi_M3U_IPTV_Editor
             channelsGrid.DataSource = channels;
             data.Clear();
             channels.Clear();
-            data.Add("");
-            data.Add("");
-            data.Add("");
-            data.Add("");
-            channels.Add(new Channel(channelNum, data[0].Trim(), data[2].Trim(), data[3].Trim()));//, data[4].Trim(),data[6].Trim(), data[5].Trim()* 
+            channels.Add(new Channel(id:channelNum, Name:"New CHannel",ip:"http://123.456.789", Group:"New Group",logo:"New Logo",tvid:"New EPG"));//, data[4].Trim(),data[6].Trim(), data[5].Trim()* 
  
             
 
@@ -413,11 +476,8 @@ namespace Kodi_M3U_IPTV_Editor
             channelsGrid.DataSource = channels;
             data.Clear();
             channels.Clear();
-            data.Add("New Channel");
-            data.Add("");
-            data.Add("");
-            data.Add("");
-            channels.Add(new Channel(channelNum, data[0].Trim(), data[2].Trim(), data[3].Trim()));//, data[4].Trim(),data[6].Trim(), data[5].Trim()* 
+
+            channels.Add(new Channel(id:channelNum, Name:"New Channel",ip:"http://123.456.789", Group:"New Group",logo:"New Logo",tvid:"New EPG"));//, data[4].Trim(),data[6].Trim(), data[5].Trim()* 
  
             
         }
@@ -453,6 +513,40 @@ namespace Kodi_M3U_IPTV_Editor
                     break;
 
             }
+        }
+
+        
+
+       
+
+        private void channelName_MouseLeave(object sender, EventArgs e)
+        {
+            updatechannels();
+        }
+
+        private void stream_MouseLeave_1(object sender, EventArgs e)
+        {
+            updatechannels();
+        }
+
+        private void channelTags_MouseLeave(object sender, EventArgs e)
+        {
+            updatechannels();
+        }
+
+        private void textBox1_MouseLeave(object sender, EventArgs e)
+        {
+            updatechannels();
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_MouseLeave(object sender, EventArgs e)
+        {
+            updatechannels();
         }
 
        

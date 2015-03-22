@@ -57,9 +57,12 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.channelsGrid = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.axVLCPlugin21 = new AxAXVLC.AxVLCPlugin2();
-            this.buttonSubmit = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.stream = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -114,7 +117,7 @@
             // 
             this.newListToolStripMenuItem.Image = global::Kodi_M3U_IPTV_Editor.Properties.Resources.document_new;
             this.newListToolStripMenuItem.Name = "newListToolStripMenuItem";
-            this.newListToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newListToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.newListToolStripMenuItem.Text = "New List";
             this.newListToolStripMenuItem.Click += new System.EventHandler(this.newListToolStripMenuItem_Click);
             // 
@@ -122,7 +125,7 @@
             // 
             this.openFileToolStripMenuItem.Image = global::Kodi_M3U_IPTV_Editor.Properties.Resources.document_open;
             this.openFileToolStripMenuItem.Name = "openFileToolStripMenuItem";
-            this.openFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openFileToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.openFileToolStripMenuItem.Text = "&Open List...";
             this.openFileToolStripMenuItem.Click += new System.EventHandler(this.openPlaylist);
             // 
@@ -130,7 +133,7 @@
             // 
             this.openURLToolStripMenuItem.Image = global::Kodi_M3U_IPTV_Editor.Properties.Resources.applications_internet;
             this.openURLToolStripMenuItem.Name = "openURLToolStripMenuItem";
-            this.openURLToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openURLToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.openURLToolStripMenuItem.Text = "Open &URL...";
             this.openURLToolStripMenuItem.Click += new System.EventHandler(this.openURL);
             // 
@@ -138,34 +141,34 @@
             // 
             this.addAListToolStripMenuItem.Image = global::Kodi_M3U_IPTV_Editor.Properties.Resources.format_justify_center;
             this.addAListToolStripMenuItem.Name = "addAListToolStripMenuItem";
-            this.addAListToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.addAListToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.addAListToolStripMenuItem.Text = "Add a list...";
             this.addAListToolStripMenuItem.Click += new System.EventHandler(this.addAListToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(133, 6);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Enabled = false;
             this.saveToolStripMenuItem.Image = global::Kodi_M3U_IPTV_Editor.Properties.Resources.document_save_as;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.saveToolStripMenuItem.Text = "&Save as...";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.savePlaylist);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(133, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Image = global::Kodi_M3U_IPTV_Editor.Properties.Resources.emblem_unreadable;
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.exitToolStripMenuItem.Text = "&Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -312,7 +315,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
             this.splitContainer1.Panel2MinSize = 280;
-            this.splitContainer1.Size = new System.Drawing.Size(920, 434);
+            this.splitContainer1.Size = new System.Drawing.Size(920, 512);
             this.splitContainer1.SplitterDistance = 635;
             this.splitContainer1.TabIndex = 2;
             this.splitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer1_SplitterMoved);
@@ -331,7 +334,7 @@
             this.channelsGrid.ReadOnly = true;
             this.channelsGrid.RowHeadersVisible = false;
             this.channelsGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.channelsGrid.Size = new System.Drawing.Size(635, 434);
+            this.channelsGrid.Size = new System.Drawing.Size(635, 512);
             this.channelsGrid.TabIndex = 0;
             this.channelsGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.channelsGrid_CellContentClick);
             this.channelsGrid.SelectionChanged += new System.EventHandler(this.channelsGrid_SelectionChanged);
@@ -340,9 +343,12 @@
             // 
             this.panel1.AutoSize = true;
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.textBox2);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.axVLCPlugin21);
-            this.panel1.Controls.Add(this.buttonSubmit);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.stream);
             this.panel1.Controls.Add(this.label3);
@@ -352,15 +358,50 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(281, 434);
+            this.panel1.Size = new System.Drawing.Size(281, 512);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(15, 204);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(63, 13);
+            this.label4.TabIndex = 22;
+            this.label4.Text = "TV EPG ID:";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(15, 218);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(248, 20);
+            this.textBox2.TabIndex = 21;
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.textBox2.MouseLeave += new System.EventHandler(this.textBox2_MouseLeave);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(15, 161);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(34, 13);
+            this.label1.TabIndex = 20;
+            this.label1.Text = "Logo:";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(15, 177);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(248, 20);
+            this.textBox1.TabIndex = 19;
+            this.textBox1.MouseLeave += new System.EventHandler(this.textBox1_MouseLeave);
+            // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(188, 369);
+            this.button1.Location = new System.Drawing.Point(15, 477);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(248, 23);
             this.button1.TabIndex = 18;
             this.button1.Text = "Test";
             this.button1.UseVisualStyleBackColor = true;
@@ -369,22 +410,12 @@
             // axVLCPlugin21
             // 
             this.axVLCPlugin21.Enabled = true;
-            this.axVLCPlugin21.Location = new System.Drawing.Point(8, 169);
+            this.axVLCPlugin21.Location = new System.Drawing.Point(8, 282);
             this.axVLCPlugin21.Name = "axVLCPlugin21";
             this.axVLCPlugin21.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin21.OcxState")));
-            this.axVLCPlugin21.Size = new System.Drawing.Size(261, 194);
+            this.axVLCPlugin21.Size = new System.Drawing.Size(261, 190);
             this.axVLCPlugin21.TabIndex = 17;
             this.axVLCPlugin21.Enter += new System.EventHandler(this.axVLCPlugin21_Enter);
-            // 
-            // buttonSubmit
-            // 
-            this.buttonSubmit.Location = new System.Drawing.Point(15, 369);
-            this.buttonSubmit.Name = "buttonSubmit";
-            this.buttonSubmit.Size = new System.Drawing.Size(97, 23);
-            this.buttonSubmit.TabIndex = 16;
-            this.buttonSubmit.Text = "Update channel";
-            this.buttonSubmit.UseVisualStyleBackColor = true;
-            this.buttonSubmit.Click += new System.EventHandler(this.buttonSubmit_Click);
             // 
             // label6
             // 
@@ -401,6 +432,7 @@
             this.stream.Name = "stream";
             this.stream.Size = new System.Drawing.Size(248, 20);
             this.stream.TabIndex = 10;
+            this.stream.MouseLeave += new System.EventHandler(this.stream_MouseLeave_1);
             // 
             // label3
             // 
@@ -417,6 +449,7 @@
             this.channelTags.Name = "channelTags";
             this.channelTags.Size = new System.Drawing.Size(248, 20);
             this.channelTags.TabIndex = 4;
+            this.channelTags.MouseLeave += new System.EventHandler(this.channelTags_MouseLeave);
             // 
             // label2
             // 
@@ -433,6 +466,7 @@
             this.channelName.Name = "channelName";
             this.channelName.Size = new System.Drawing.Size(248, 20);
             this.channelName.TabIndex = 2;
+            this.channelName.MouseLeave += new System.EventHandler(this.channelName_MouseLeave);
             // 
             // openFile
             // 
@@ -457,7 +491,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(920, 489);
+            this.ClientSize = new System.Drawing.Size(920, 567);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.toolStrip);
             this.Controls.Add(this.menuStrip);
@@ -512,7 +546,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox channelName;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button buttonSubmit;
         private System.Windows.Forms.OpenFileDialog openFile;
         private System.Windows.Forms.ToolStripButton toolStripNew;
         private System.Windows.Forms.ToolStripButton toolStripDuplicate;
@@ -526,6 +559,10 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ToolStripMenuItem addAListToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }
 
