@@ -19,11 +19,16 @@ namespace Kodi_M3U_IPTV_Editor
         private int channelNum = 0;
         public StreamReader playlistFile;
         public SortableBindingList<Channel> channels = new SortableBindingList<Channel>();
-    
+        bool newlist;
+        
 
         public Editor()
         {
+            newlist = true;
             InitializeComponent();
+          
+                addAListToolStripMenuItem.Enabled = false;
+           
            
         }
         public SortableBindingList<Channel> GetList()
@@ -35,6 +40,7 @@ namespace Kodi_M3U_IPTV_Editor
         {
             alertSave();
             openFile.ShowDialog();
+            
         }
         public void updatechannels()
         {
@@ -384,7 +390,7 @@ namespace Kodi_M3U_IPTV_Editor
             alertSave();
         }
 
-        private void openFile_FileOk(object sender, CancelEventArgs e)
+        public void openFile_FileOk(object sender, CancelEventArgs e)
         {
             fileName = Path.GetFileNameWithoutExtension(openFile.FileName);
             playlistFile = new StreamReader(openFile.FileName);
@@ -394,6 +400,7 @@ namespace Kodi_M3U_IPTV_Editor
             {
                 case ".m3u":
                     importM3U();
+                    addAListToolStripMenuItem.Enabled = true;
                     break;
                
             }
@@ -445,16 +452,17 @@ namespace Kodi_M3U_IPTV_Editor
 
         }
 
-        private void newListToolStripMenuItem_Click(object sender, EventArgs e)
+        public void newListToolStripMenuItem_Click(object sender, EventArgs e)
         {
+          
             alertSave();
             enableEditing();
             channelsGrid.DataSource = channels;
             data.Clear();
             channels.Clear();
             channels.Add(new Channel(id:channelNum, Name:"New CHannel",ip:"http://123.456.789", Group:"New Group",logo:"New Logo",tvid:"New EPG"));//, data[4].Trim(),data[6].Trim(), data[5].Trim()* 
- 
-            
+            newlist = true;
+            addAListToolStripMenuItem.Enabled = false;
 
             
 
@@ -497,14 +505,19 @@ namespace Kodi_M3U_IPTV_Editor
 
         private void addAListToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            alertSave();
+           
+ 
             openFileDialog1.ShowDialog();
         }
 
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
+ 
             fileName = Path.GetFileNameWithoutExtension(openFile.FileName);
-            playlistFile = new StreamReader(openFile.FileName);
+            
+                    playlistFile = new StreamReader(openFile.FileName);
+             
+            
             channelsGrid.DataSource = channels;
             switch (Path.GetExtension(openFile.FileName))
             {
@@ -547,6 +560,11 @@ namespace Kodi_M3U_IPTV_Editor
         private void textBox2_MouseLeave(object sender, EventArgs e)
         {
             updatechannels();
+        }
+
+        private void documentationHowToToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://iptvm3ueditor.codeplex.com/documentation");
         }
 
        
