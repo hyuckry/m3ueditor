@@ -56,12 +56,12 @@ namespace Kodi_M3U_IPTV_Editor
 
                 channels[selectedRow].Name = channelName.Text;
                 channels[selectedRow].Group = channelTags.Text;
-                textBox1.Text = channels[selectedRow].Image;
-                textBox2.Text = channels[selectedRow].EPG;
+               // textBox1.Text = channels[selectedRow].Image;
+            //    textBox2.Text = channels[selectedRow].EPG;
                 channels[selectedRow].IP = stream.Text;
                 string uri = stream.Text;
-                //  channels[selectedRow].EPG = channelEPG.Text;
-                //channels[selectedRow].Image = channelImage.Text;
+                 channels[selectedRow].EPG = textBox2.Text;
+                channels[selectedRow].Image = textBox1.Text;
             }
            /* else
             {
