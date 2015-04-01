@@ -20,6 +20,7 @@ namespace Kodi_M3U_IPTV_Editor
         public StreamReader playlistFile;
         public SortableBindingList<Channel> channels = new SortableBindingList<Channel>();
         bool newlist;
+        bool updateboolean;
         
 
         public Editor()
@@ -38,31 +39,33 @@ namespace Kodi_M3U_IPTV_Editor
 
         private void openPlaylist(object sender, EventArgs e)
         {
+
             alertSave();
             openFile.ShowDialog();
             
         }
         public void updatechannels()
         {
-            
+            if (updateboolean == true)
+            {
             if (channelsGrid.SelectedRows.Count == 0)
         
                 return;
         
             //int id;
-            if (/*channelID.Text.Trim().Length > 0 && int.TryParse(channelID.Text.Trim(), out id) && */ channelName.Text.Trim().Length > 0 && stream.Text.Trim().Length > 0)
+            if (channelName.Text.Trim().Length > 0 && stream.Text.Trim().Length > 0)
             {
                 int selectedRow = channelsGrid.SelectedRows[0].Index;
 
                 channels[selectedRow].Name = channelName.Text;
                 channels[selectedRow].Group = channelTags.Text;
-               // textBox1.Text = channels[selectedRow].Image;
-            //    textBox2.Text = channels[selectedRow].EPG;
+        
                 channels[selectedRow].IP = stream.Text;
                 string uri = stream.Text;
                  channels[selectedRow].EPG = textBox2.Text;
                 channels[selectedRow].Image = textBox1.Text;
             }
+        }
            /* else
             {
                 MessageBox.Show("A name and stream URL is required", "Update error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -74,8 +77,8 @@ namespace Kodi_M3U_IPTV_Editor
            
          //  bool image = false;
 
-            
-            
+
+            updateboolean = false;
 
             while ((line = playlistFile.ReadLine()) != null)
             {
@@ -232,14 +235,15 @@ namespace Kodi_M3U_IPTV_Editor
                 toolStripMoveDown.Enabled = true;
             */
             toolStripDuplicate.Enabled = true;
- 
+
+            updateboolean = false;
             channelName.Text = channels[selectedRow].Name;
             channelTags.Text = channels[selectedRow].Group;
         
             stream.Text = channels[selectedRow].IP;
             textBox1.Text = channels[selectedRow].Image;
             textBox2.Text = channels[selectedRow].EPG;
-          
+            updateboolean = true;
        
             string uri = stream.Text;
         }
@@ -369,9 +373,8 @@ namespace Kodi_M3U_IPTV_Editor
 
         private void alertSave()
         {
-            if (string.IsNullOrEmpty(fileName))
-                return;
 
+            updateboolean = true;
             DialogResult dialogSave = MessageBox.Show("Do you want to save your current playlist?", "Save Playlist", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogSave == DialogResult.Yes)
                 saveFile.ShowDialog();
@@ -401,6 +404,7 @@ namespace Kodi_M3U_IPTV_Editor
                 case ".m3u":
                     importM3U();
                     addAListToolStripMenuItem.Enabled = true;
+                    updateboolean = true;
                     break;
                
             }
@@ -454,14 +458,16 @@ namespace Kodi_M3U_IPTV_Editor
 
         public void newListToolStripMenuItem_Click(object sender, EventArgs e)
         {
-          
+
             alertSave();
+             
             enableEditing();
             channelsGrid.DataSource = channels;
             data.Clear();
             channels.Clear();
             channels.Add(new Channel(id:channelNum, Name:"New CHannel",ip:"http://123.456.789", Group:"New Group",logo:"New Logo",tvid:"New EPG"));//, data[4].Trim(),data[6].Trim(), data[5].Trim()* 
             newlist = true;
+            
             addAListToolStripMenuItem.Enabled = false;
 
             
@@ -480,6 +486,7 @@ namespace Kodi_M3U_IPTV_Editor
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             alertSave();
+                
             enableEditing();
             channelsGrid.DataSource = channels;
             data.Clear();
@@ -523,6 +530,7 @@ namespace Kodi_M3U_IPTV_Editor
             {
                 case ".m3u":
                     importM3U();
+                    updateboolean = true;
                     break;
 
             }
@@ -554,7 +562,7 @@ namespace Kodi_M3U_IPTV_Editor
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-
+            updatechannels();
         }
 
         private void textBox2_MouseLeave(object sender, EventArgs e)
@@ -565,6 +573,26 @@ namespace Kodi_M3U_IPTV_Editor
         private void documentationHowToToolStripMenuItem_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("https://iptvm3ueditor.codeplex.com/documentation");
+        }
+
+        private void channelName_TextChanged_1(object sender, EventArgs e)
+        {
+            updatechannels();
+        }
+
+        private void channelTags_TextChanged(object sender, EventArgs e)
+        {
+            updatechannels();
+        }
+
+        private void stream_TextChanged(object sender, EventArgs e)
+        {
+            updatechannels();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            updatechannels();
         }
 
        
