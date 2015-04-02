@@ -159,21 +159,6 @@ namespace Kodi_M3U_IPTV_Editor
                 }
                
 
-          /*  if (data.Count == 4)
-                {
-
-
-                    channels.Add(new Channel(channelNum, data[0].Trim(), data[2].Trim(), data[3].Trim()));//, data[4].Trim(),data[6].Trim(), data[5].Trim()* 
-                
-                } 
-
-               else if (data.Count == 4)
-                {
-
-                    channels.Add(new Channel(channelNum, data[0].Trim(), data[2].Trim(), data[3].Trim()));//, data[4].Trim(),data[6].Trim(), data[5].Trim()));
-                  //  image = true;
-                }
-                */
                 data.Clear();
             }
             playlistFile.Close();
@@ -189,7 +174,60 @@ namespace Kodi_M3U_IPTV_Editor
             }
         }
 
-       
+
+
+        private void importCSV()
+        {
+            
+           
+            while ((line = playlistFile.ReadLine()) != null)
+            {
+               
+
+                data.Add("one N/A"); // 0
+                data.Add("two N/A"); // 1
+                data.Add("three N/A"); // 2
+                data.Add("four N/A");//3
+                data.Add("five N/A");//4
+                data.Add("six N/A");//5
+                data.Add("seven N/A");//6
+
+                data.AddRange(line.Split(','));
+               
+                // if (!int.TryParse(data[0].Trim(), out channelNum)) { data.Clear(); continue; }
+
+
+
+                if (data.Count > 0)
+                {
+
+                    try
+                    {
+                    //data count should be 7 */
+                    channels.Add(new Channel(id: channelNum, Name: data[7].Trim(), ip: data[9].Trim(), Group: data[8].Trim(), logo: data[10].Trim(), tvid: data[11].Trim()));//, data[4].Trim(),data[6].Trim(), data[5].Trim()* 
+
+                    }
+                        catch (System.ArgumentOutOfRangeException)
+                             {
+                                 MessageBox.Show("A channel has been omitted due to its incorrect format");
+                                 continue;
+                           } 
+                    
+
+                    data.Clear();
+                }
+               // playlistFile.Close();
+
+                if (channels.Count == 0)
+                {
+                    MessageBox.Show("Selected file has incorrect structure! Please open appropriate file.", "File Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            }
+            channels.RemoveAt(0);
+            
+        }
+
 
         private void enableEditing()
         {
@@ -418,6 +456,12 @@ namespace Kodi_M3U_IPTV_Editor
                     addAListToolStripMenuItem.Enabled = true;
                     updateboolean = true;
                     break;
+
+                case ".csv":
+                    importCSV();
+                    addAListToolStripMenuItem.Enabled = false;
+                    updateboolean = true;
+                    break;
                
             }
         }
@@ -534,7 +578,7 @@ namespace Kodi_M3U_IPTV_Editor
 
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
- 
+            playlistFile.Close();
             fileName = Path.GetFileNameWithoutExtension(openFile.FileName);
             
                     playlistFile = new StreamReader(openFile.FileName);
@@ -547,6 +591,7 @@ namespace Kodi_M3U_IPTV_Editor
                     importM3U();
                     updateboolean = true;
                     break;
+               
 
             }
         }
