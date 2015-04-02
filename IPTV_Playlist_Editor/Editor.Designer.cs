@@ -118,7 +118,7 @@
             // 
             this.newListToolStripMenuItem.Image = global::Kodi_M3U_IPTV_Editor.Properties.Resources.document_new;
             this.newListToolStripMenuItem.Name = "newListToolStripMenuItem";
-            this.newListToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.newListToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.newListToolStripMenuItem.Text = "New List";
             this.newListToolStripMenuItem.Click += new System.EventHandler(this.newListToolStripMenuItem_Click);
             // 
@@ -126,7 +126,7 @@
             // 
             this.openFileToolStripMenuItem.Image = global::Kodi_M3U_IPTV_Editor.Properties.Resources.document_open;
             this.openFileToolStripMenuItem.Name = "openFileToolStripMenuItem";
-            this.openFileToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.openFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.openFileToolStripMenuItem.Text = "&Open List...";
             this.openFileToolStripMenuItem.Click += new System.EventHandler(this.openPlaylist);
             // 
@@ -134,7 +134,7 @@
             // 
             this.openURLToolStripMenuItem.Image = global::Kodi_M3U_IPTV_Editor.Properties.Resources.applications_internet;
             this.openURLToolStripMenuItem.Name = "openURLToolStripMenuItem";
-            this.openURLToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.openURLToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.openURLToolStripMenuItem.Text = "Open &URL...";
             this.openURLToolStripMenuItem.Click += new System.EventHandler(this.openURL);
             // 
@@ -142,33 +142,33 @@
             // 
             this.addAListToolStripMenuItem.Image = global::Kodi_M3U_IPTV_Editor.Properties.Resources.format_justify_center;
             this.addAListToolStripMenuItem.Name = "addAListToolStripMenuItem";
-            this.addAListToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.addAListToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.addAListToolStripMenuItem.Text = "Add a list...";
             this.addAListToolStripMenuItem.Click += new System.EventHandler(this.addAListToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(133, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Image = global::Kodi_M3U_IPTV_Editor.Properties.Resources.document_save_as;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveToolStripMenuItem.Text = "&Save as...";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.savePlaylist);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(133, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Image = global::Kodi_M3U_IPTV_Editor.Properties.Resources.emblem_unreadable;
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "&Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -422,7 +422,7 @@
             this.axVLCPlugin21.Location = new System.Drawing.Point(8, 282);
             this.axVLCPlugin21.Name = "axVLCPlugin21";
             this.axVLCPlugin21.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin21.OcxState")));
-            this.axVLCPlugin21.Size = new System.Drawing.Size(261, 190);
+            this.axVLCPlugin21.Size = new System.Drawing.Size(261, 189);
             this.axVLCPlugin21.TabIndex = 17;
             this.axVLCPlugin21.Enter += new System.EventHandler(this.axVLCPlugin21_Enter);
             // 
@@ -488,7 +488,7 @@
             // 
             // saveFile
             // 
-            this.saveFile.Filter = "Playlist Files (*.m3u)|*.m3u";
+            this.saveFile.Filter = "Playlist Files (*.m3u)|*.m3u|CSV files (*.csv)|*.csv";
             this.saveFile.Title = "Save Playlist";
             this.saveFile.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFile_FileOk);
             // 

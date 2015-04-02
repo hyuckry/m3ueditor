@@ -393,6 +393,18 @@ namespace Kodi_M3U_IPTV_Editor
             alertSave();
         }
 
+        private void saveCSV()
+        {
+            StreamWriter file = new StreamWriter(saveFile.FileName, false, Encoding.UTF8);
+            file.WriteLine("Name,Group,Stream URL,Logo,EPG");
+            for (int i = 0; i < channels.Count; i++)
+            {
+                file.WriteLine(channels[i].Name + "," +  channels[i].Group.Replace(",", "-") + "," + channels[i].IP  + "," + channels[i].Image + "," + channels[i].EPG);
+            }
+            file.Close();
+        }
+
+
         public void openFile_FileOk(object sender, CancelEventArgs e)
         {
             fileName = Path.GetFileNameWithoutExtension(openFile.FileName);
@@ -416,6 +428,9 @@ namespace Kodi_M3U_IPTV_Editor
             {
                 case ".m3u":
                     saveM3U();
+                    break;
+                case ".csv":
+                    saveCSV();
                     break;
                
             }
@@ -465,7 +480,7 @@ namespace Kodi_M3U_IPTV_Editor
             channelsGrid.DataSource = channels;
             data.Clear();
             channels.Clear();
-            channels.Add(new Channel(id:channelNum, Name:"New CHannel",ip:"http://123.456.789", Group:"New Group",logo:"New Logo",tvid:"New EPG"));//, data[4].Trim(),data[6].Trim(), data[5].Trim()* 
+            channels.Add(new Channel(id:channelNum, Name:"New Channel",ip:"http://123.456.789", Group:"New Group",logo:"New Logo",tvid:"New EPG"));//, data[4].Trim(),data[6].Trim(), data[5].Trim()* 
             newlist = true;
             
             addAListToolStripMenuItem.Enabled = false;
